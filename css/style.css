@@ -1,0 +1,22 @@
+.sky{
+    background-color: aquamarine;
+    height: 50px;
+    /* margin: 5px; */
+    display: inline-block;
+}
+
+.sky:hover{
+    border: solid 0.5px black;
+    margin: 0%;
+    padding: solid 0.1px black;
+    height: 48px;
+}
+body{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,47px);
+    margin: 0%;
+}
+
+nav{
+    position: absolute;
+}
