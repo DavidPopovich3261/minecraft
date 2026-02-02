@@ -1,6 +1,6 @@
 .sky{
-    background-color: aquamarine;
-    height: 50px;
+    background-color:#87CEEB;
+    height: 30px;
     /* margin: 5px; */
     display: inline-block;
 }
@@ -9,11 +9,12 @@
     border: solid 0.5px black;
     margin: 0%;
     padding: solid 0.1px black;
-    height: 48px;
+    height: 28px;
 }
+
 body{
     display: grid;
-    grid-template-columns: repeat(auto-fit,47px);
+    grid-template-columns: repeat(auto-fit,30px);
     margin: 0%;
 }
 
