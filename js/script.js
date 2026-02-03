@@ -10,6 +10,7 @@ const itTree = document.getElementById("itTree")
 const itLeaves = document.getElementById("itLeaves")
 const itLend = document.getElementById("itLend")
 const itSton = document.getElementById("itSton")
+const box =document.getElementById("box")
 const items = document.getElementById("itemsid")
 const body = document.getElementById("body")
 const axe = document.getElementById("axe")
@@ -18,6 +19,7 @@ const shovel = document.getElementById("shovel")
 const sword = document.getElementById("sword")
 const it = document.querySelectorAll(".it")
 const tool = document.querySelectorAll(".t")
+let boxopen=false
 
 for (let i = 1; i <= 1200; i++) {
     const element = document.createElement("div")
@@ -182,12 +184,23 @@ function resources(element) {
     }
 }
 
-items.addEventListener("click", () => {
-    items.className = "itemsplye"
-    itTree.style.display = "inline-block"
-    itLeaves.style.display = "inline-block"
-    itLend.style.display = "inline-block"
-    itSton.style.display = "inline-block"
+box.addEventListener("click", () => {    
+    if(!(boxopen)){
+        items.className = "itemsplye"
+        items.style.display="grid"
+        itTree.style.display = "inline-block"
+        itLeaves.style.display = "inline-block"
+        itLend.style.display = "inline-block"
+        itSton.style.display = "inline-block"
+        boxopen=true
+    }else{
+        items.style.display="none"
+        itTree.style.display = "none"
+        itLeaves.style.display = "none"
+        itLend.style.display = "none"
+        itSton.style.display = "none"
+        boxopen=false
+    }
 })
 
 

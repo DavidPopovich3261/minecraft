@@ -95,17 +95,14 @@ a:hover {
 
 #tools {
     /* background-color: white; */
-    width: 200px;
+    width: 50vw;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
-#tools:hover {
-    cursor: url(https://2d-minecraft-game.vercel.app/assets/sword.png);
-}
 
-.items {
+#box {
     background-image: url(https://2d-minecraft-game.vercel.app/assets/box.png);
     background-size: cover;
     height: 50px;
@@ -129,6 +126,3 @@ a:hover {
     width: 150px;
 }
 
-/* body{
-    cursor: url('./imegs/axe-cursor.png'),auto;
-} */
