@@ -41,7 +41,7 @@ for (let i = 1; i <= 1200; i++) {
 
 }
 
-function tree(i, element, x, y) {
+function tree(i, element, x,) {
     if (i > 550 && (i % 50 == x || i % 50 == (x + 1)) && i < 751) {
         element.className = "tree"
     }
