@@ -1,14 +1,29 @@
+let countTree = 0
+let countLeaves = 0
+let countLend = 0
+let countSton = 0
 const a1 = (Math.floor(Math.random() * 50))
 const a2 = (Math.floor(Math.random() * 50))
 const a3 = (Math.floor(Math.random() * 50))
 let toolrem = ""
-console.log(a1, a2, a3);
+const itTree = document.getElementById("itTree")
+const itLeaves = document.getElementById("itLeaves")
+const itLend = document.getElementById("itLend")
+const itSton = document.getElementById("itSton")
+const items = document.getElementById("itemsid")
+const body = document.getElementById("body")
+const axe = document.getElementById("axe")
+const pickaxe = document.getElementById("pickaxe")
+const shovel = document.getElementById("shovel")
+const sword = document.getElementById("sword")
+const it = document.querySelectorAll(".it")
+const tool = document.querySelectorAll(".t")
 
 for (let i = 1; i <= 1200; i++) {
     const element = document.createElement("div")
     contaner.appendChild(element)
     element.addEventListener("click", () => {
-        console.log(toolrem);
+        // console.log(toolrem);
         resources(element)
     })
     if (i > 750 && i < 1001) {
@@ -32,6 +47,8 @@ function tree(i, element, x, y) {
     }
     else if (i > 400 && (i % 50 > (x - 1) && i % 50 < (x + 2)) && i < 451) {
         element.className = "leaves"
+        console.log(element);
+
     } else if (i > 450 && (i % 50 > (x - 3) && i % 50 < (x + 4)) && i < 501) {
         element.className = "leaves"
     } else if (i > 500 && (i % 50 > (x - 5) && i % 50 < (x + 6)) && i < 551) {
@@ -39,21 +56,42 @@ function tree(i, element, x, y) {
     }
 }
 
+itTree.addEventListener("click", () => {
+    if (countTree > 0) {
 
-let countTree = 0
-let countLeaves = 0
-let countLend = 0
-let countSton = 0
+        toolrem = "itTree"
+        document.body.style.cursor = `url("../imegs/tree-s.png"),auto`;
+    }
 
-const itTree = document.getElementById("itTree")
-const itLeaves = document.getElementById("itLeaves")
-const itLend = document.getElementById("itLend")
-const itSton = document.getElementById("itSton")
+})
+itLeaves.addEventListener("click", () => {
+    if (countLeaves > 0) {
+
+        toolrem = "itLeaves"
+        document.body.style.cursor = `url("../imegs/leaf-s.png"),auto`;
+    }
+
+})
+itLend.addEventListener("click", () => {
+    if (countLend > 0) {
+        toolrem = "itLend"
+        document.body.style.cursor = `url("../imegs/dirt-s.png"),auto`;
+    }
+
+})
+itSton.addEventListener("click", () => {
+    if (countSton > 0) {
+
+        toolrem = "itSton"
+        document.body.style.cursor = `url("../imegs/rock-s.png"),auto`;
+    }
+
+})
 
 function resources(element) {
     const elementclass = element.className
     if (elementclass == "tree") {
-        if (toolrem == "t axe") {
+        if (toolrem == "axe") {
             countTree++
             itTree.innerText = JSON.stringify(countTree)
             itTree.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/wood1.png)";
@@ -62,7 +100,7 @@ function resources(element) {
         }
     }
     else if (elementclass == "leaves") {
-        if (toolrem == "t sword") {
+        if (toolrem == "sword") {
             countLeaves++
             itLeaves.innerText = JSON.stringify(countLeaves)
             itLeaves.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/leaves1.png)";
@@ -72,7 +110,7 @@ function resources(element) {
         }
     }
     else if (elementclass == "lend") {
-        if (toolrem == "t shovel") {
+        if (toolrem == "shovel") {
             countLend++
             itLend.innerText = JSON.stringify(countLend)
             itLend.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/soil4.png)";
@@ -82,41 +120,98 @@ function resources(element) {
         }
     }
     else if (elementclass == "ston") {
-        if (toolrem == "t pickaxe") {
+        if (toolrem == "pickaxe") {
             countSton++
             itSton.innerText = JSON.stringify(countSton)
             itSton.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/Stone1.jpg)"
             itSton.style.backgroundSize = "cover";
             element.className = "sky"
+        }
+    }
+    else if (elementclass == "sky") {
+        if (toolrem == "itTree") {
+            if (countTree > 0) {
+                element.className = "tree"
+                countTree--
+                itTree.innerText = JSON.stringify(countTree)
+            }
+            if (countTree == 0) {
+                itTree.style.backgroundImage = null
+                itTree.innerText = ""
+                document.body.style.cursor = null;
 
+            }
+        } else if (toolrem == "itLeaves") {
+            if (countLeaves > 0) {
+                element.className = "leaves"
+                countLeaves--
+                itLeaves.innerText = JSON.stringify(countLeaves)
+                console.log(element);
+            }
+            if (countLeaves == 0) {
+                itLeaves.style.background = null
+                itLeaves.innerText = ""
+                document.body.style.cursor = null;
+
+            }
+        } else if (toolrem == "itLend") {
+            if (countLend > 0) {
+                element.className = "lend"
+                countLend--
+                itLend.innerText = JSON.stringify(countLend)
+            }
+            if (countLend == 0) {
+                itLend.style.background = null
+                itLend.innerText = ""
+                document.body.style.cursor = null;
+
+            }
+        } else if (toolrem == "itSton") {
+            if (countSton > 0) {
+                element.className = "ston"
+                countSton--
+                itSton.innerText = JSON.stringify(countSton)
+            }
+            if (countSton == 0) {
+                itSton.style.background = null
+                itSton.innerText = ""
+                document.body.style.cursor = null;
+
+            }
         }
     }
 }
-const items = document.getElementById("items")
-items.addEventListener("click", () => {
-    items.style.background = "white"
-    items.style.boxSizing = "border-box"
-    items.style.width = "10vw"
-    items.style.height = "10vh"
-    items.style.display = "grid"
-    itTree.style.display = "inline"
-    itLeaves.style.display = "inline"
-    itLend.style.display = "inline"
-    itSton.style.display = "inline"
 
+items.addEventListener("click", () => {
+    items.className = "itemsplye"
+    itTree.style.display = "inline-block"
+    itLeaves.style.display = "inline-block"
+    itLend.style.display = "inline-block"
+    itSton.style.display = "inline-block"
+})
+
+
+axe.addEventListener("click", () => {
+    toolrem = "axe"
+    document.body.style.cursor = `url("../imegs/axe-cursor.png"),auto`;
+})
+
+pickaxe.addEventListener("click", () => {
+    toolrem = "pickaxe"
+    document.body.style.cursor = `url("../imegs/pickaxe-s.png"),auto`;
 
 })
 
-const it = document.querySelectorAll(".it")
-// for (let i of Array.from(it)) {
-//     i.innerHTML()
-// }
+shovel.addEventListener("click", () => {
+    toolrem = "shovel"
+    document.body.style.cursor = `url("../imegs/shovel-s.png"),auto`;
 
-const body = document.getElementById("body")
-const tool = document.querySelectorAll(".t")
-for (let i of Array.from(tool)) {
-    i.addEventListener("click", () => {
-        toolrem = i.className
-    })
-}
+})
+
+sword.addEventListener("click", () => {
+    toolrem = "sword"
+    document.body.style.cursor = `url("../imegs/sword (1).png"),auto`;
+
+})
+
 

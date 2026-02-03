@@ -71,27 +71,30 @@ a:hover {
     height: 50px;
     width: 50px;
     background-size: cover;
+    background-color: dimgray;
+    border-radius: 5px;
+    margin: 2px;
 }
 
-.axe {
+#axe {
     background-image: url(https://2d-minecraft-game.vercel.app/assets/axe.png);
 }
 
-.shovel {
+#shovel {
     background-image: url(https://2d-minecraft-game.vercel.app/assets/shovel.png);
 }
 
-.pickaxe {
+#pickaxe {
     background-image: url(https://2d-minecraft-game.vercel.app/assets/pickaxe.png);
 
 }
 
-.sword {
+#sword {
     background-image: url(https://2d-minecraft-game.vercel.app/assets/sword.png);
 }
 
 #tools {
-    background-color: white;
+    /* background-color: white; */
     width: 200px;
     display: flex;
     justify-content: space-around;
@@ -102,13 +105,30 @@ a:hover {
     cursor: url(https://2d-minecraft-game.vercel.app/assets/sword.png);
 }
 
-#items {
+.items {
     background-image: url(https://2d-minecraft-game.vercel.app/assets/box.png);
     background-size: cover;
     height: 50px;
     width: 50px;
 }
 
-#items div{
+.items div {
     display: none;
+    height: 100px;
+    width: 100px;
+    box-sizing: border-box;
+    background-size: cover;
+
 }
+
+.itemsplye {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background: white;
+    height: 150px;
+    width: 150px;
+}
+
+/* body{
+    cursor: url('./imegs/axe-cursor.png'),auto;
+} */
