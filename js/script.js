@@ -316,16 +316,16 @@ buyTree.addEventListener("dblclick", () => {
 })
 buyLeaves.addEventListener("dblclick", () => {
     if ((Number(countwallet.innerText) - 50) >= 0) {
-        countTree++
+        countLeaves++
         itLeaves.innerText = JSON.stringify(countLeaves)
         itLeaves.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/leaves1.png)";
         itLeaves.style.backgroundSize = "cover";
-        countwallet.innerText = Number(countwallet.innerText) - 50
+        countwallet.innerText = Number(countwallet.innerText) - 50        
     }
 })
 buyLend.addEventListener("dblclick", () => {
     if ((Number(countwallet.innerText) - 50) >= 0) {
-        countTree++
+        countLend++
         itLend.innerText = JSON.stringify(countLend)
         itLend.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/soil4.png)";
         itLend.style.backgroundSize = "cover";
@@ -334,7 +334,7 @@ buyLend.addEventListener("dblclick", () => {
 })
 buySton.addEventListener("dblclick", () => {
     if ((Number(countwallet.innerText) - 50) >= 0) {
-        countTree++
+        countSton++
         itSton.innerText = JSON.stringify(countSton)
         itSton.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/Stone1.jpg)"
         itSton.style.backgroundSize = "cover";
