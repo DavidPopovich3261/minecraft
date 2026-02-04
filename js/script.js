@@ -10,16 +10,19 @@ const itTree = document.getElementById("itTree")
 const itLeaves = document.getElementById("itLeaves")
 const itLend = document.getElementById("itLend")
 const itSton = document.getElementById("itSton")
-const box =document.getElementById("box")
+const box = document.getElementById("box")
 const items = document.getElementById("itemsid")
 const body = document.getElementById("body")
+const footer =document.getElementById("footer")
 const axe = document.getElementById("axe")
 const pickaxe = document.getElementById("pickaxe")
 const shovel = document.getElementById("shovel")
 const sword = document.getElementById("sword")
 const it = document.querySelectorAll(".it")
 const tool = document.querySelectorAll(".t")
-let boxopen=false
+const tools = document.getElementById("tools")
+let boxopen = false
+let storeopen=false
 
 for (let i = 1; i <= 1200; i++) {
     const element = document.createElement("div")
@@ -184,22 +187,22 @@ function resources(element) {
     }
 }
 
-box.addEventListener("click", () => {    
-    if(!(boxopen)){
+box.addEventListener("click", () => {
+    if (!(boxopen)) {
         items.className = "itemsplye"
-        items.style.display="grid"
+        items.style.display = "grid"
         itTree.style.display = "inline-block"
         itLeaves.style.display = "inline-block"
         itLend.style.display = "inline-block"
         itSton.style.display = "inline-block"
-        boxopen=true
-    }else{
-        items.style.display="none"
+        boxopen = true
+    } else {
+        items.style.display = "none"
         itTree.style.display = "none"
         itLeaves.style.display = "none"
         itLend.style.display = "none"
         itSton.style.display = "none"
-        boxopen=false
+        boxopen = false
     }
 })
 
@@ -227,4 +230,60 @@ sword.addEventListener("click", () => {
 
 })
 
+
+
+const store= document.getElementById("store")
+const warehouse= document.getElementById("warehouse")
+const wallet = document.getElementById("wallet")
+const countwallet =document.getElementById("countwallet")
+countwallet.innerText=1000
+store.addEventListener("click",()=>{
+    if(storeopen == false) {
+        warehouse.className="warehouse"
+        warehouse.style.display="grid"
+        storeopen=true
+    } 
+    else{
+        warehouse.style.display="none"
+        storeopen=false
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var x = window.matchMedia("(max-width: 700px)")
+
+// function myFunction(x) {
+//     if (x.matches) { // If media query matches
+//         const mobil=document.createElement("div")
+//         mobil.className="mobil"
+//         contaner.appendChild(mobil)
+//         document.body.style.backgroundColor = "yellow";
+//     }else{
+//         contaner.mobil.
+//     }
+// }
+
+// myFunction(x);
+// x.addEventListener("change", function () {
+//     myFunction(x);
+// });
 
