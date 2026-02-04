@@ -36,48 +36,46 @@ buyLeaves.className = "buyclose"
 buyLend.className = "buyclose"
 buySton.className = "buyclose"
 countwallet.innerText = 1000
+const listcontaner = []
 
-
-for (let i = 1; i <= 1200; i++) {
-    const element = document.createElement("div")
-    contaner.appendChild(element)
-    element.addEventListener("click", () => {
-        // console.log(toolrem);
-        resources(element)
-    })
-    if (i > 750 && i < 1001) {
-        element.className = "lend"
-    }
-    else if (i > 1000) {
-        element.className = "ston"
-    }
-    else {
+for (let i = 1; i <= 24; i++) {
+    listcontaner.push([])
+    for (let y = 1; y <= 50; y++) {
+        const element = document.createElement("div")
+        contaner.appendChild(element)
+        listcontaner[i - 1].push(element)
         element.className = "sky"
+        if (i > 15) {
+            element.className = "lend"
+        }
+        if (i > 20) {
+            element.className = "ston"
+        }
+        element.addEventListener("click", () => {
+            resources(i, y, element)
+        })
+        tree(i, y, element, a1)
+        tree(i, y, element, a2)
+        tree(i, y, element, a3)
     }
-    tree(i, element, a1)
-    tree(i, element, a2)
-    tree(i, element, a3)
-
 }
-
-function tree(i, element, x,) {
-    if (i > 550 && (i % 50 == x || i % 50 == (x + 1)) && i < 751) {
+function tree(i, y, element, x) {
+    if (i > 12 && (y == x || y == (x + 1)) && i < 16) {
         element.className = "tree"
     }
-    else if (i > 400 && (i % 50 > (x - 1) && i % 50 < (x + 2)) && i < 451) {
+    else if (i == 10 && (y > (x - 1) && y < (x + 2))) {
         element.className = "leaves"
-        console.log(element);
-
-    } else if (i > 450 && (i % 50 > (x - 3) && i % 50 < (x + 4)) && i < 501) {
+    } else if (i == 11 && (y > (x - 3) && y < (x + 4))) {
         element.className = "leaves"
-    } else if (i > 500 && (i % 50 > (x - 5) && i % 50 < (x + 6)) && i < 551) {
+    } else if (i == 12 && (y > (x - 5) && y < (x + 6))) {
         element.className = "leaves"
     }
 }
 
 
-
-function resources(element) {
+function resources(i, y, element) {
+    i = i - 1
+    y = y - 1
     const elementclass = element.className
     if (elementclass == "tree") {
         if (toolrem == "axe") {
@@ -118,54 +116,76 @@ function resources(element) {
         }
     }
     else if (elementclass == "sky") {
-        if (toolrem == "itTree") {
-            if (countTree > 0) {
-                element.className = "tree"
-                countTree--
-                itTree.innerText = JSON.stringify(countTree)
+        const Spirits = []
+        for (let x = 0; x < listcontaner.length; x++) {
+            for (let j = 0; j < listcontaner[x].length; j++) {
+                if ((x == i + 1 && j == y) || (x == i - 1 && j == y) || (j == y - 1 && x == i) || (j == y + 1 && x == i)) {
+                    Spirits.push(listcontaner[x][j]);
+                    console.log(listcontaner[x][j]);
+                    // listcontaner[x][j].style.border=" solid 0.5px black;"
+                }
             }
-            if (countTree == 0) {
-                itTree.style.backgroundImage = null
-                itTree.innerText = ""
-                document.body.style.cursor = null;
-
+        }
+        if (toolrem == "itTree") {
+            for (let s of Spirits) {
+                if (s.className == "tree" || s.className == "lend") {
+                    if (countTree > 0) {
+                        element.className = "tree"
+                        countTree--
+                        itTree.innerText = JSON.stringify(countTree)
+                    }
+                    if (countTree == 0) {
+                        itTree.style.backgroundImage = null
+                        itTree.innerText = ""
+                        document.body.style.cursor = null;
+                    } return
+                }
             }
         } else if (toolrem == "itLeaves") {
-            if (countLeaves > 0) {
-                element.className = "leaves"
-                countLeaves--
-                itLeaves.innerText = JSON.stringify(countLeaves)
-                console.log(element);
-            }
-            if (countLeaves == 0) {
-                itLeaves.style.background = null
-                itLeaves.innerText = ""
-                document.body.style.cursor = null;
-
+            for (let s of Spirits) {
+                if (s.className == "leaves" || s.className == "tree") {
+                    if (countLeaves > 0) {
+                        element.className = "leaves"
+                        countLeaves--
+                        itLeaves.innerText = JSON.stringify(countLeaves)
+                    }
+                    if (countLeaves == 0) {
+                        itLeaves.style.background = null
+                        itLeaves.innerText = ""
+                        document.body.style.cursor = null;
+                    } return
+                }
             }
         } else if (toolrem == "itLend") {
-            if (countLend > 0) {
-                element.className = "lend"
-                countLend--
-                itLend.innerText = JSON.stringify(countLend)
-            }
-            if (countLend == 0) {
-                itLend.style.background = null
-                itLend.innerText = ""
-                document.body.style.cursor = null;
-
+            for (let s of Spirits) {
+                if (s.className == "lend" || s.className == "ston") {
+                    if (countLend > 0) {
+                        element.className = "lend"
+                        countLend--
+                        itLend.innerText = JSON.stringify(countLend)
+                    }
+                    if (countLend == 0) {
+                        itLend.style.background = null
+                        itLend.innerText = ""
+                        document.body.style.cursor = null;
+                    } return
+                }
             }
         } else if (toolrem == "itSton") {
-            if (countSton > 0) {
-                element.className = "ston"
-                countSton--
-                itSton.innerText = JSON.stringify(countSton)
-            }
-            if (countSton == 0) {
-                itSton.style.background = null
-                itSton.innerText = ""
-                document.body.style.cursor = null;
+            for (let s of Spirits) {
+                if (s.className == "ston") {
+                    if (countSton > 0) {
+                        element.className = "ston"
+                        countSton--
+                        itSton.innerText = JSON.stringify(countSton)
+                    }
+                    if (countSton == 0) {
+                        itSton.style.background = null
+                        itSton.innerText = ""
+                        document.body.style.cursor = null;
 
+                    } return
+                }
             }
         }
     }
@@ -320,7 +340,7 @@ buyLeaves.addEventListener("dblclick", () => {
         itLeaves.innerText = JSON.stringify(countLeaves)
         itLeaves.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/leaves1.png)";
         itLeaves.style.backgroundSize = "cover";
-        countwallet.innerText = Number(countwallet.innerText) - 50        
+        countwallet.innerText = Number(countwallet.innerText) - 50
     }
 })
 buyLend.addEventListener("dblclick", () => {
@@ -344,39 +364,6 @@ buySton.addEventListener("dblclick", () => {
 
 
 
-
-
-
-// for (let i = 0; i <= 100000000; i++) {
-//     test = String( i)
-//     await sleep(3000);
-// }
-
-// countwallet.innerText=myFunction()
-
-// async function myFunction() {
-//     for (let i = 0; i <= 100; i++) {
-//         test = String(i)
-//     }
-// }
-// myFunction()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // var x = window.matchMedia("(max-width: 700px)")
 
 // function myFunction(x) {
@@ -394,4 +381,41 @@ buySton.addEventListener("dblclick", () => {
 // x.addEventListener("change", function () {
 //     myFunction(x);
 // });
+//------------------------------------------
 
+// for (let i = 1; i <= 1200; i++) {
+//     const element = document.createElement("div")
+//     contaner.appendChild(element)
+// element.addEventListener("click", () => {
+//     // console.log(toolrem);
+//     resources(i, element)
+// })
+//     if (i > 750 && i < 1001) {
+//         element.className = "lend"
+//     }
+//     else if (i > 1000) {
+//         element.className = "ston"
+//     }
+//     else {
+//         element.className = "sky"
+//     }
+//     tree(i, element, a1)
+//     tree(i, element, a2)
+//     tree(i, element, a3)
+
+// }
+
+// function tree(i, element, x,) {
+//     if (i > 550 && (i % 50 == x || i % 50 == (x + 1)) && i < 751) {
+//         element.className = "tree"
+//     }
+//     else if (i > 400 && (i % 50 > (x - 1) && i % 50 < (x + 2)) && i < 451) {
+//         element.className = "leaves"
+//         console.log(element);
+
+//     } else if (i > 450 && (i % 50 > (x - 3) && i % 50 < (x + 4)) && i < 501) {
+//         element.className = "leaves"
+//     } else if (i > 500 && (i % 50 > (x - 5) && i % 50 < (x + 6)) && i < 551) {
+//         element.className = "leaves"
+//     }
+// }
