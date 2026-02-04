@@ -13,7 +13,7 @@ const itSton = document.getElementById("itSton")
 const box = document.getElementById("box")
 const items = document.getElementById("itemsid")
 const body = document.getElementById("body")
-const footer =document.getElementById("footer")
+const footer = document.getElementById("footer")
 const axe = document.getElementById("axe")
 const pickaxe = document.getElementById("pickaxe")
 const shovel = document.getElementById("shovel")
@@ -21,8 +21,22 @@ const sword = document.getElementById("sword")
 const it = document.querySelectorAll(".it")
 const tool = document.querySelectorAll(".t")
 const tools = document.getElementById("tools")
+const store = document.getElementById("store")
+const warehouse = document.getElementById("warehouse")
+const wallet = document.getElementById("wallet")
+const countwallet = document.getElementById("countwallet")
 let boxopen = false
-let storeopen=false
+let storeopen = false
+const buyTree = document.getElementById("buyTree")
+const buyLeaves = document.getElementById("buyLeaves")
+const buyLend = document.getElementById("buyLend")
+const buySton = document.getElementById("buySton")
+buyTree.className = "buyclose"
+buyLeaves.className = "buyclose"
+buyLend.className = "buyclose"
+buySton.className = "buyclose"
+countwallet.innerText = 1000
+
 
 for (let i = 1; i <= 1200; i++) {
     const element = document.createElement("div")
@@ -61,37 +75,7 @@ function tree(i, element, x,) {
     }
 }
 
-itTree.addEventListener("click", () => {
-    if (countTree > 0) {
 
-        toolrem = "itTree"
-        document.body.style.cursor = `url("../imegs/tree-s.png"),auto`;
-    }
-
-})
-itLeaves.addEventListener("click", () => {
-    if (countLeaves > 0) {
-
-        toolrem = "itLeaves"
-        document.body.style.cursor = `url("../imegs/leaf-s.png"),auto`;
-    }
-
-})
-itLend.addEventListener("click", () => {
-    if (countLend > 0) {
-        toolrem = "itLend"
-        document.body.style.cursor = `url("../imegs/dirt-s.png"),auto`;
-    }
-
-})
-itSton.addEventListener("click", () => {
-    if (countSton > 0) {
-
-        toolrem = "itSton"
-        document.body.style.cursor = `url("../imegs/rock-s.png"),auto`;
-    }
-
-})
 
 function resources(element) {
     const elementclass = element.className
@@ -206,6 +190,85 @@ box.addEventListener("click", () => {
     }
 })
 
+itTree.addEventListener("click", () => {
+    if (countTree > 0) {
+        toolrem = "itTree"
+        document.body.style.cursor = `url("../imegs/tree-s.png"),auto`;
+    }
+})
+
+itTree.addEventListener("dblclick", () => {
+    if (countTree > 0) {
+        countTree--
+        countwallet.innerText = Number(countwallet.innerText) + 50
+        itTree.innerText = JSON.stringify(countTree)
+        if (countTree == 0) {
+            itTree.style.backgroundImage = null
+            itTree.innerText = ""
+            document.body.style.cursor = null;
+        }
+    }
+})
+
+itLeaves.addEventListener("click", () => {
+    if (countLeaves > 0) {
+        toolrem = "itLeaves"
+        document.body.style.cursor = `url("../imegs/leaf-s.png"),auto`;
+    }
+})
+
+itLeaves.addEventListener("dblclick", () => {
+    if (countLeaves > 0) {
+        countLeaves--
+        countwallet.innerText = Number(countwallet.innerText) + 50
+        itLeaves.innerText = JSON.stringify(countLeaves)
+        if (countLeaves == 0) {
+            itLeaves.style.backgroundImage = null
+            itLeaves.innerText = ""
+            document.body.style.cursor = null;
+        }
+    }
+})
+
+itLend.addEventListener("click", () => {
+    if (countLend > 0) {
+        toolrem = "itLend"
+        document.body.style.cursor = `url("../imegs/dirt-s.png"),auto`;
+    }
+})
+
+itLend.addEventListener("dblclick", () => {
+    if (countLend > 0) {
+        countLend--
+        countwallet.innerText = Number(countwallet.innerText) + 50
+        itLend.innerText = JSON.stringify(countLend)
+        if (countLend == 0) {
+            itLend.style.backgroundImage = null
+            itLend.innerText = ""
+            document.body.style.cursor = null;
+        }
+    }
+})
+
+itSton.addEventListener("click", () => {
+    if (countSton > 0) {
+        toolrem = "itSton"
+        document.body.style.cursor = `url("../imegs/rock-s.png"),auto`;
+    }
+})
+
+itSton.addEventListener("dblclick", () => {
+    if (countSton > 0) {
+        countSton--
+        countwallet.innerText = Number(countwallet.innerText) + 50
+        itSton.innerText = JSON.stringify(countSton)
+        if (countSton == 0) {
+            itSton.style.backgroundImage = null
+            itSton.innerText = ""
+            document.body.style.cursor = null;
+        }
+    }
+})
 
 axe.addEventListener("click", () => {
     toolrem = "axe"
@@ -230,28 +293,73 @@ sword.addEventListener("click", () => {
 
 })
 
+store.addEventListener("click", () => {
+    if (storeopen == false) {
+        warehouse.className = "warehouse"
+        warehouse.style.display = "grid"
+        storeopen = true
+    }
+    else {
+        warehouse.style.display = "none"
+        storeopen = false
+    }
+})
 
-
-const store= document.getElementById("store")
-const warehouse= document.getElementById("warehouse")
-const wallet = document.getElementById("wallet")
-const countwallet =document.getElementById("countwallet")
-countwallet.innerText=1000
-store.addEventListener("click",()=>{
-    if(storeopen == false) {
-        warehouse.className="warehouse"
-        warehouse.style.display="grid"
-        storeopen=true
-    } 
-    else{
-        warehouse.style.display="none"
-        storeopen=false
+buyTree.addEventListener("dblclick", () => {
+    if ((Number(countwallet.innerText) - 50) >= 0) {
+        countTree++
+        itTree.innerText = JSON.stringify(countTree)
+        itTree.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/wood1.png)";
+        itTree.style.backgroundSize = "cover";
+        countwallet.innerText = Number(countwallet.innerText) - 50
+    }
+})
+buyLeaves.addEventListener("dblclick", () => {
+    if ((Number(countwallet.innerText) - 50) >= 0) {
+        countTree++
+        itLeaves.innerText = JSON.stringify(countLeaves)
+        itLeaves.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/leaves1.png)";
+        itLeaves.style.backgroundSize = "cover";
+        countwallet.innerText = Number(countwallet.innerText) - 50
+    }
+})
+buyLend.addEventListener("dblclick", () => {
+    if ((Number(countwallet.innerText) - 50) >= 0) {
+        countTree++
+        itLend.innerText = JSON.stringify(countLend)
+        itLend.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/soil4.png)";
+        itLend.style.backgroundSize = "cover";
+        countwallet.innerText = Number(countwallet.innerText) - 50
+    }
+})
+buySton.addEventListener("dblclick", () => {
+    if ((Number(countwallet.innerText) - 50) >= 0) {
+        countTree++
+        itSton.innerText = JSON.stringify(countSton)
+        itSton.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/Stone1.jpg)"
+        itSton.style.backgroundSize = "cover";
+        countwallet.innerText = Number(countwallet.innerText) - 50
     }
 })
 
 
 
 
+
+
+// for (let i = 0; i <= 100000000; i++) {
+//     test = String( i)
+//     await sleep(3000);
+// }
+
+// countwallet.innerText=myFunction()
+
+// async function myFunction() {
+//     for (let i = 0; i <= 100; i++) {
+//         test = String(i)
+//     }
+// }
+// myFunction()
 
 
 
