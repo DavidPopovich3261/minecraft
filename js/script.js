@@ -59,6 +59,7 @@ for (let i = 1; i <= 24; i++) {
         tree(i, y, element, a3)
     }
 }
+
 function tree(i, y, element, x) {
     if (i > 12 && (y == x || y == (x + 1)) && i < 16) {
         element.className = "tree"
@@ -93,7 +94,7 @@ function resources(i, y, element) {
             itLeaves.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/leaves1.png)";
             itLeaves.style.backgroundSize = "cover";
             element.className = "sky"
-
+            
         }
     }
     else if (elementclass == "lend") {
@@ -103,7 +104,7 @@ function resources(i, y, element) {
             itLend.style.backgroundImage = "url(https://2d-minecraft-game.vercel.app/assets/soil4.png)";
             itLend.style.backgroundSize = "cover";
             element.className = "sky"
-
+            
         }
     }
     else if (elementclass == "ston") {
@@ -121,8 +122,8 @@ function resources(i, y, element) {
             for (let j = 0; j < listcontaner[x].length; j++) {
                 if ((x == i + 1 && j == y) || (x == i - 1 && j == y) || (j == y - 1 && x == i) || (j == y + 1 && x == i)) {
                     Spirits.push(listcontaner[x][j]);
-                    console.log(listcontaner[x][j]);
-                    // listcontaner[x][j].style.border=" solid 0.5px black;"
+                    // console.log(listcontaner[x][j]);
+                    
                 }
             }
         }
@@ -183,8 +184,126 @@ function resources(i, y, element) {
                         itSton.style.background = null
                         itSton.innerText = ""
                         document.body.style.cursor = null;
-
+                        
                     } return
+                }
+            }
+        }
+    }
+    let flag = true
+    for (let t =  listcontaner.length-2; t >=0; t--) {            
+        for (let l = 0; l < listcontaner[t].length; l++) {
+            if (listcontaner[t][l].className == "tree") { 
+                if(listcontaner[t+1][l].className != "tree"  && listcontaner[t+1][l].className != "lend") {
+                    flag=false
+                    for (let l2 =l; l2< listcontaner[t].length; l2++){
+                        if(listcontaner[t][l2].className == "tree" || listcontaner[t][l2].className =="lend"){
+                            if(listcontaner[t+1][l2].className == "tree" || listcontaner[t+1][l2].className =="lend"){
+                                flag=true
+                            }
+                        }
+                        else{
+                            break
+                        }
+                    }
+                    for (let l2 =l; l2>=0; l2--){                            
+                        if(listcontaner[t][l2].className == "tree" || listcontaner[t][l2].className =="lend"){
+                            if(listcontaner[t+1][l2].className == "tree" || listcontaner[t+1][l2].className =="lend"){
+                                flag=true                                    
+                            }
+                        }
+                        else{
+                            break
+                        }
+                    }
+                }
+                if(flag!=true){
+                    listcontaner[t][l].className="sky"
+                    flag = true
+                }
+            }if (listcontaner[t][l].className == "leaves") { 
+                if(listcontaner[t+1][l].className != "leaves"  && listcontaner[t+1][l].className != "tree") {
+                    flag=false
+                    for (let l2 =l; l2< listcontaner[t].length; l2++){
+                        if(listcontaner[t][l2].className == "leaves" || listcontaner[t][l2].className =="tree"){
+                            if(listcontaner[t+1][l2].className == "leaves" || listcontaner[t+1][l2].className =="tree"){
+                                flag=true
+                            }
+                        }
+                        else{
+                            break
+                        }
+                    }
+                    for (let l2 =l; l2>=0; l2--){                            
+                        if(listcontaner[t][l2].className == "leaves" || listcontaner[t][l2].className =="tree"){
+                            if(listcontaner[t+1][l2].className == "leaves" || listcontaner[t+1][l2].className =="tree"){
+                                flag=true                                    
+                            }
+                        }
+                        else{
+                            break
+                        }
+                    }
+                }
+                if(flag!=true){
+                    listcontaner[t][l].className="sky"
+                    flag = true
+                }
+            }if (listcontaner[t][l].className == "lend") { 
+                if(listcontaner[t+1][l].className != "lend"  && listcontaner[t+1][l].className != "ston") {
+                    flag=false
+                    for (let l2 =l; l2< listcontaner[t].length; l2++){
+                        if(listcontaner[t][l2].className == "lend" || listcontaner[t][l2].className =="ston"){
+                            if(listcontaner[t+1][l2].className == "lend" || listcontaner[t+1][l2].className =="ston"){
+                                flag=true
+                            }
+                        }
+                        else{
+                            break
+                        }
+                    }
+                    for (let l2 =l; l2>=0; l2--){                            
+                        if(listcontaner[t][l2].className == "lend" || listcontaner[t][l2].className =="ston"){
+                            if(listcontaner[t+1][l2].className == "lend" || listcontaner[t+1][l2].className =="ston"){
+                                flag=true                                    
+                            }
+                        }
+                        else{
+                            break
+                        }
+                    }
+                }
+                if(flag!=true){
+                    listcontaner[t][l].className="sky"
+                    flag = true
+                }
+            }if (listcontaner[t][l].className == "ston") { 
+                if(listcontaner[t+1][l].className != "ston") {
+                    flag=false
+                    for (let l2 =l; l2< listcontaner[t].length; l2++){
+                        if(listcontaner[t][l2].className == "ston"){
+                            if(listcontaner[t+1][l2].className == "ston"){
+                                flag=true  
+                            }
+                        }
+                        else{
+                            break
+                        }
+                    }
+                    for (let l2 =l; l2>=0; l2--){                            
+                        if(listcontaner[t][l2].className == "ston" ){
+                            if(listcontaner[t+1][l2].className == "ston"){
+                                flag=true                                    
+                            }
+                        }
+                        else{
+                            break
+                        }
+                    }
+                }
+                if(flag!=true){
+                    listcontaner[t][l].className="sky"
+                    flag = true
                 }
             }
         }
@@ -364,58 +483,4 @@ buySton.addEventListener("dblclick", () => {
 
 
 
-// var x = window.matchMedia("(max-width: 700px)")
 
-// function myFunction(x) {
-//     if (x.matches) { // If media query matches
-//         const mobil=document.createElement("div")
-//         mobil.className="mobil"
-//         contaner.appendChild(mobil)
-//         document.body.style.backgroundColor = "yellow";
-//     }else{
-//         contaner.mobil.
-//     }
-// }
-
-// myFunction(x);
-// x.addEventListener("change", function () {
-//     myFunction(x);
-// });
-//------------------------------------------
-
-// for (let i = 1; i <= 1200; i++) {
-//     const element = document.createElement("div")
-//     contaner.appendChild(element)
-// element.addEventListener("click", () => {
-//     // console.log(toolrem);
-//     resources(i, element)
-// })
-//     if (i > 750 && i < 1001) {
-//         element.className = "lend"
-//     }
-//     else if (i > 1000) {
-//         element.className = "ston"
-//     }
-//     else {
-//         element.className = "sky"
-//     }
-//     tree(i, element, a1)
-//     tree(i, element, a2)
-//     tree(i, element, a3)
-
-// }
-
-// function tree(i, element, x,) {
-//     if (i > 550 && (i % 50 == x || i % 50 == (x + 1)) && i < 751) {
-//         element.className = "tree"
-//     }
-//     else if (i > 400 && (i % 50 > (x - 1) && i % 50 < (x + 2)) && i < 451) {
-//         element.className = "leaves"
-//         console.log(element);
-
-//     } else if (i > 450 && (i % 50 > (x - 3) && i % 50 < (x + 4)) && i < 501) {
-//         element.className = "leaves"
-//     } else if (i > 500 && (i % 50 > (x - 5) && i % 50 < (x + 6)) && i < 551) {
-//         element.className = "leaves"
-//     }
-// }
